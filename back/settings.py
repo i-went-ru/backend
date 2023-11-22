@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'djoser',
     'phonenumber_field',
     'drf_yasg',
+    'taggit',
 
     'user',
     'resident',
