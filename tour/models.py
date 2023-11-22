@@ -15,8 +15,8 @@ class Tour(models.Model):
     client = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='client_tours')
     datetime = models.DateTimeField(unique=True)
     status = models.CharField(max_length=11, choices=STATUSES)
-    comment = models.CharField(max_length=2500)
-    residents = models.ManyToManyField(Resident, related_name='resident_tours')
+    comment = models.CharField(max_length=2500, blank=True, null=True)
+    residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=True)
 
     def __str__(self) -> str:
         return f'{self.pk} | {self.datetime} | {self.status}'
