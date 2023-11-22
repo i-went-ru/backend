@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-service
+spec:
+  selector:
+    matchLabels:
+      app: backend-service
+  template:
+    metadata:
+      labels:
+        app: backend-service
+    spec:
+      containers:
+      - name: backend-service
+        image: ghcr.io/i-went-ru/backend:4
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+          - name: DATABASE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: database
+                key: host
+          - name: DATABASE_USER
+            valueFrom:
+              secretKeyRef:
+                name: database
+                key: user
+          - name: DATABASE_NAME
+            valueFrom:
+              secretKeyRef:
+                name: database
+                key: database
+          - name: DATABASE_PASS
+            valueFrom:
+              secretKeyRef:
+                name: database
+                key: password
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: backend
+                key: key
+        ports:
+        - containerPort: 8080
