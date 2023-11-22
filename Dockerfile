@@ -21,4 +21,4 @@ EXPOSE 8000
 #TODO нужна ли админка?
 #RUN python manage.py collectstatic --noinput
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["bash", "entrypoint.sh"]

@@ -36,7 +36,7 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
-urlpatterns = [
+routes = [
     path(r'auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path(r'admin/', admin.site.urls),
@@ -46,6 +46,11 @@ urlpatterns = [
     path(r'residents/', include('resident.urls')),
     path(r'tours/', include('tour.urls')),
 ]
+
+urlpatterns = [
+    path('api/', include(routes))
+]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
