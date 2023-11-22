@@ -21,5 +21,4 @@ EXPOSE 8000
 #TODO нужна ли админка?
 #RUN python manage.py collectstatic --noinput
 
-ENTRYPOINT ["python","manage.py", "migrate"]
-CMD ["gunicorn", "-c", "docker/gunicorn.py", "iwent-backend.wsgi:application"]
+ENTRYPOINT ["/entrypoint.sh"]
