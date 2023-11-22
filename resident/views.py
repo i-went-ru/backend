@@ -30,7 +30,7 @@ class ResidentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        tags_string = self.request.query_params.get('tags', '')
+        tags_string = self.request.query_params.get('tags', '') # type: ignore
         if tags_string:
             tags = tags_string.split(',')
             for tag in tags:
