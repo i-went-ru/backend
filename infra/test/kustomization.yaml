@@ -7,4 +7,4 @@ resources:
 namespace: test-iwent
 images:
 - name: ghcr.io/i-went-ru/backend
-  newTag: fd43378c7d39ecdf43aa4b0e666ba41b99cbd111
+  newTag: 28d616f159950acc2291f902cc4b827bb0d42fde
