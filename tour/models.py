@@ -15,7 +15,7 @@ class Tour(models.Model):
     client = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='client_tours')
     begin_datetime = models.DateTimeField(unique=True)
     end_datetime = models.DateTimeField(unique=True)
-    status = models.CharField(max_length=11, choices=STATUSES)
+    status = models.CharField(max_length=11, choices=STATUSES, default='moderation')
     comment = models.CharField(max_length=2500, blank=True, null=True)
     residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=True)
 

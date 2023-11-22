@@ -34,6 +34,7 @@ class Resident(models.Model):
         new_photo.resident = self
         new_photo.photo = image
         new_photo.save()
+
     def __str__(self) -> str:
         return f'{self.pk} | {self.name} | {self.direction}'
 
