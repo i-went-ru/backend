@@ -46,4 +46,4 @@ spec:
                 name: backend
                 key: key
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
