@@ -23,12 +23,16 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+schema_view_is_public = False
+if settings.DEBUG:
+    schema_view_is_public = True
+
 schema_view = get_schema_view(
    openapi.Info(
       title="API Schema",
       default_version='v1',
    ),
-   public=True,
+   public=schema_view_is_public,
    permission_classes=(permissions.AllowAny,),
 )
 
