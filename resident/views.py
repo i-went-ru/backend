@@ -33,7 +33,8 @@ class ResidentViewSet(viewsets.ModelViewSet):
         tags_string = self.request.query_params.get('tags', '')
         if tags_string:
             tags = tags_string.split(',')
-            queryset = queryset.filter(tags__name__in=tags)
+            for tag in tags:
+                queryset = queryset.filter(tags__name=tag)
         return queryset
 
     @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated], serializer_class=ResidentPhotoSerializer)
