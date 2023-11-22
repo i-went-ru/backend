@@ -10,6 +10,13 @@ class ResidentViewSet(viewsets.ModelViewSet):
     queryset = Resident.objects.all()
     serializer_class = ResidentSerializer
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        tags = self.request.query_params.get('tags', '').split(',')
+        if tags:
+            queryset = queryset.filter(tags__name__in=tags)
+        return queryset
+
     @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated], serializer_class=ResidentPhotoSerializer)
     def add_photo(self, request, pk=None):
         resident: Resident = self.get_object()
