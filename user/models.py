@@ -7,9 +7,10 @@ class User(AbstractUser):
         ('guest', 'обыватель'),
         ('org', 'организация'),
         ('school', 'учебное заведение'),
+        ('resident', 'резидент')
     )
     full_name = models.CharField(max_length=200)
     organization = models.CharField(max_length=200)
     phone = PhoneNumberField(null = False, blank = False, unique = True)
-    user_type = models.CharField(max_length=6, choices=USER_TYPES)
+    user_type = models.CharField(max_length=8, choices=USER_TYPES)
     REQUIRED_FIELDS = ['full_name', 'organization', 'phone', 'user_type']
