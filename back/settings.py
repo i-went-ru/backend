@@ -109,11 +109,8 @@ DATABASES = {
     # }
 }
 
-CORS_ALLOWED_ORIGINS = [
-    # "https://dev.i-went.ru/"
-    # "https://i-went.ru/"
-    "*",
-]
+CORS_ALLOWED_ORIGINS = True
+
 
 CORS_ALLOW_METHODS = (
     "DELETE",
