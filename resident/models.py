@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator, MaxValueValidator
 from rest_framework.exceptions import bad_request
 
 User = get_user_model()
@@ -16,6 +17,9 @@ class Resident(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=2500)
     direction = models.CharField(max_length=17, choices=DIRECTIONS)
+    floor = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(12)]
+    )
 
     def add_photo(self, user, image):
         if user != self.responsible:

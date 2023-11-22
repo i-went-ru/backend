@@ -11,4 +11,4 @@ class ResidentSerializer(serializers.ModelSerializer):
     photos = ResidentPhotoSerializer(many=True, read_only=True)
     class Meta:
         model = Resident
-        fields = ('id', 'responsible', 'name', 'description', 'direction', 'photos')
+        fields = ('id', 'responsible', 'name', 'description', 'direction', 'floor', 'photos')
