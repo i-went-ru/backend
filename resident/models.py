@@ -22,7 +22,7 @@ class Resident(models.Model):
     floor = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(12)]
     )
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     def add_photo(self, user, image):
         if user != self.responsible:
