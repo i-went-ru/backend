@@ -110,8 +110,9 @@ DATABASES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://dev.i-went.ru/"
-    "https://i-went.ru/"
+    # "https://dev.i-went.ru/"
+    # "https://i-went.ru/"
+    "*",
 ]
 
 CORS_ALLOW_METHODS = (
