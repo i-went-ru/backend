@@ -36,7 +36,7 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
-routes = [
+urlpatterns = [
     path(r'auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path(r'admin/', admin.site.urls),
@@ -45,10 +45,6 @@ routes = [
     path(r'redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path(r'residents/', include('resident.urls')),
     path(r'tours/', include('tour.urls')),
-]
-
-urlpatterns = [
-    path('api/', include(routes))
 ]
 
 if settings.DEBUG:
