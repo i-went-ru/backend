@@ -21,3 +21,10 @@ class TourViewSet(viewsets.ModelViewSet):
         week_from_now = today + timedelta(weeks=1)
         queryset = Tour.objects.filter(begin_datetime__range=[today, week_from_now]).order_by('begin_datetime')
         return Response(TourSerializer(queryset, many=True).data)
+    
+    @action(detail=False, methods=['get'], url_path='upcoming/month')
+    def upcoming_month(self, request):
+        today = datetime.now().date()
+        month_from_now = today + timedelta(days=30)
+        queryset = Tour.objects.filter(begin_datetime__range=[today, month_from_now]).order_by('begin_datetime')
+        return Response(TourSerializer(queryset, many=True).data)
