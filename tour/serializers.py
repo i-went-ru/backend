@@ -7,7 +7,11 @@ from resident.serializers import ResidentSerializer
 class TourSerializer(serializers.ModelSerializer):
     guide = UserSerializerFull()
     client = UserSerializerFull()
-    residents = ResidentSerializer(many=True)
+    residents = serializers.SerializerMethodField()
+
+    def get_residents(self, instance):
+        queryset = instance.residents.all().order_by('floor')
+        return ResidentSerializer(queryset, many=True).data
 
     class Meta:
         model = Tour
