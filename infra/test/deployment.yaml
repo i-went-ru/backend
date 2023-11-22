@@ -13,37 +13,24 @@ spec:
     spec:
       containers:
       - name: backend-service
-        image: ghcr.io/i-went-ru/backend:4
+        image: ghcr.io/i-went-ru/backend:fd43378c7d39ecdf43aa4b0e666ba41b99cbd111
         imagePullPolicy: Always
         resources:
           limits:
             memory: "1024Mi"
             cpu: "500m"
         env:
-          - name: DATABASE_HOST
+          - name: DATABASE_URL
             valueFrom:
               secretKeyRef:
                 name: database
                 key: host
-          - name: DATABASE_USER
-            valueFrom:
-              secretKeyRef:
-                name: database
-                key: user
-          - name: DATABASE_NAME
-            valueFrom:
-              secretKeyRef:
-                name: database
-                key: database
-          - name: DATABASE_PASS
-            valueFrom:
-              secretKeyRef:
-                name: database
-                key: password
           - name: SECRET_KEY
             valueFrom:
               secretKeyRef:
                 name: backend
                 key: key
+          - name: DEBUG
+            value: "false"
         ports:
         - containerPort: 8000
