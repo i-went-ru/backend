@@ -52,3 +52,7 @@ class FreeDay(models.Model):
 class BusyDay(models.Model):
     resident = models.ForeignKey(Resident, on_delete=models.CASCADE, related_name='busy_days')
     date = models.DateField()
+
+class ExtraFile(models.Model):
+    resident = models.ForeignKey(Resident, on_delete=models.CASCADE, related_name='extra_files')
+    file = models.FileField(upload_to='residents/extra')
