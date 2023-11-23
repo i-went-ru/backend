@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'resident',
     'tour',
     'cabinet',
+    'mapphotos',
 ]
 
 MIDDLEWARE = [
