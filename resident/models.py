@@ -23,6 +23,14 @@ class Resident(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(12)]
     )
     tags = TaggableManager(blank=True)
+    
+    # @property
+    # def free_days(self):
+    #     return self.free_days.all().order_by('date')
+    
+    # @property
+    # def busy_days(self):
+    #     return self.busy_days.all().order_by('date')
 
     def add_photo(self, user, image):
         if user != self.responsible:
@@ -44,3 +52,11 @@ class ResidentPhotos(models.Model):
 
     def __str__(self) -> str:
         return f'{self.resident.pk} | {self.resident.name} | {self.pk}'
+    
+class FreeDay(models.Model):
+    resident = models.ForeignKey(Resident, on_delete=models.CASCADE, related_name='free_days')
+    date = models.DateField()
+
+class BusyDay(models.Model):
+    resident = models.ForeignKey(Resident, on_delete=models.CASCADE, related_name='busy_days')
+    date = models.DateField()
