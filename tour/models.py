@@ -22,7 +22,7 @@ class Tour(models.Model):
 
     @property
     def importance(self):
-        if self.client.user_type == 'org':
+        if self.client.user_type == 'org': # type: ignore
             return 'high'
         return 'medium'
 
