@@ -1,6 +1,5 @@
 from rest_framework import serializers
 
-from resident.serializers import ResidentSerializer
 from .models import Cabinet
 
 class CabinetSerializer(serializers.ModelSerializer):
