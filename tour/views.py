@@ -10,6 +10,13 @@ class TourViewSet(viewsets.ModelViewSet):
     queryset = Tour.objects.all()
     serializer_class = TourSerializer
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        status = self.request.query_params.get('status', '') # type: ignore
+        if status:
+            queryset = queryset.filter(status=status)
+        return queryset
+
     @action(detail=False, methods=['get'])
     def upcoming(self, request):
         queryset = Tour.objects.filter(begin_datetime__gte=datetime.now()).order_by('begin_datetime')
