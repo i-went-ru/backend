@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='ExtraFile',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.FileField(upload_to='residents/extra')),
+                ('file', models.URLField()),
                 ('resident', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='extra_files', to='resident.resident')),
             ],
         ),

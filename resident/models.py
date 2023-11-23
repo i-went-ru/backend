@@ -51,7 +51,7 @@ class Resident(models.Model):
 
 class ResidentPhotos(models.Model):
     resident = models.ForeignKey('Resident', on_delete=models.CASCADE, related_name='photos')
-    photo = models.ImageField(upload_to='residents/photos')
+    photo = models.URLField()
 
     def __str__(self) -> str:
         return f'{self.resident.pk} | {self.resident.name} | {self.pk}'
@@ -66,4 +66,4 @@ class BusyDay(models.Model):
 
 class ExtraFile(models.Model):
     resident = models.ForeignKey(Resident, on_delete=models.CASCADE, related_name='extra_files')
-    file = models.FileField(upload_to='residents/extra')
+    file = models.URLField()

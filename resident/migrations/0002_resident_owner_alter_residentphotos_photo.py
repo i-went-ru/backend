@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='residentphotos',
             name='photo',
-            field=models.ImageField(upload_to='resident/photos'),
+            field=models.URLField()
         ),
     ]

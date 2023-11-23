@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('x', models.IntegerField()),
                 ('y', models.IntegerField()),
                 ('color', models.TextField()),
-                ('image', models.ImageField(upload_to='')),
+                ('image', models.URLField()),
             ],
         ),
     ]

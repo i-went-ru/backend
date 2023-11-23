@@ -4,4 +4,4 @@ class MapPhoto(models.Model):
     x = models.IntegerField()
     y = models.IntegerField()
     color = models.TextField()
-    image = models.ImageField()
+    image = models.URLField()
