@@ -13,6 +13,7 @@ class Tour(models.Model):
     )
     guide = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='guided_tours')
     client = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='client_tours')
+    guest_count = models.IntegerField(blank=False)
     begin_datetime = models.DateTimeField(unique=True)
     end_datetime = models.DateTimeField(unique=True)
     status = models.CharField(max_length=11, choices=STATUSES, default='moderation')
