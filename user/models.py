@@ -7,7 +7,9 @@ class User(AbstractUser):
         ('guest', 'обыватель'),
         ('org', 'организация'),
         ('school', 'учебное заведение'),
-        ('resident', 'резидент')
+        ('resident', 'резидент'),
+        ('delegat', 'делегация'),
+        ('admin', 'админ'),
     )
     full_name = models.CharField(max_length=200)
     organization = models.CharField(max_length=200)
