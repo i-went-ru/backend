@@ -15,4 +15,4 @@ class TourSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tour
-        fields = ('id', 'begin_datetime', 'end_datetime', 'status', 'guide', 'client', 'residents')
+        fields = ('id', 'importance', 'begin_datetime', 'end_datetime', 'status', 'guide', 'client', 'residents')

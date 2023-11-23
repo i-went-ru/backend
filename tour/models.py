@@ -20,5 +20,11 @@ class Tour(models.Model):
     comment = models.CharField(max_length=2500, blank=True, null=True)
     residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=True)
 
+    @property
+    def importance(self):
+        if self.client.user_type == 'org':
+            return 'high'
+        return 'medium'
+
     def __str__(self) -> str:
         return f'{self.pk} | {self.begin_datetime} — {self.end_datetime} | {self.status}'

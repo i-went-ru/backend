@@ -23,14 +23,6 @@ class Resident(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(12)]
     )
     tags = TaggableManager(blank=True)
-    
-    # @property
-    # def free_days(self):
-    #     return self.free_days.all().order_by('date')
-    
-    # @property
-    # def busy_days(self):
-    #     return self.busy_days.all().order_by('date')
 
     def add_photo(self, user, image):
         if user != self.responsible:
