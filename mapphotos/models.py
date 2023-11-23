@@ -1,7 +1,7 @@
 from django.db import models
 
 class MapPhoto(models.Model):
-    x = models.IntegerField()
-    y = models.IntegerField()
+    x = models.FloatField()
+    y = models.FloatField()
     color = models.TextField()
     image = models.URLField()
