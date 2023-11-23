@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+
+from rest_framework.exceptions import ValidationError
+
 from resident.models import Resident
 
 User = get_user_model()
@@ -29,34 +32,47 @@ class Tour(models.Model):
             return 'high'
         return 'medium'
     
-    # actions
+    # actions (should work)
     def change_begin_datetime(self, datetime):
-        # TODO
-        pass
+        if not datetime:
+            return ValidationError('datetime required')
+        self.begin_datetime = datetime
     
     def change_end_datetime(self, datetime):
-        # TODO
-        pass
+        if not datetime:
+            return ValidationError('datetime required')
+        self.end_datetime = datetime
 
     def change_guests_count(self, amount):
-        # TODO
-        pass
+        if not amount:
+            return ValidationError('amount required')
+        self.guest_count = amount
     
     def change_guide(self, user):
-        # TODO
-        pass
+        if not user:
+            return ValidationError('user required')
+        self.guide = user
     
     def change_status(self, status):
-        # TODO
-        pass
+        if not status:
+            return ValidationError('status required')
+        if not (status in self.STATUSES):
+            return ValidationError(f'{status} not in statuses list')
+        self.status = status
     
     def add_resident(self, resident):
-        # TODO
-        pass
+        if not resident:
+            return ValidationError('resident required')
+        if resident.user_type != 'resident':
+            return ValidationError(f'{resident} not resident')
+        self.residents.add(resident)
     
     def delete_resident(self, resident):
-        # TODO
-        pass
+        if not resident:
+            return ValidationError('resident required')
+        if not (resident in self.residents):
+            return ValidationError(f'{resident} not in residents list')
+        self.residents.remove(resident)
 
     def __str__(self) -> str:
         return f'{self.pk} | {self.begin_datetime} — {self.end_datetime} | {self.status}'
