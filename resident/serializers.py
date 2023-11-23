@@ -26,8 +26,8 @@ class ExtraFilesSerializer(serializers.ModelSerializer):
 class ResidentSerializer(TaggitSerializer, serializers.ModelSerializer):
     photos = ResidentPhotoSerializer(many=True, read_only=True)
     tags = TagListSerializerField()
-    free_days = BusyDaySerializer(many=True, read_only=False)
-    busy_days = FreeDaySerializer(many=True, read_only=False)
+    free_days = BusyDaySerializer(many=True, read_only=False, required=False)
+    busy_days = FreeDaySerializer(many=True, read_only=False, required=False)
     extra_files = ExtraFilesSerializer(many=True, read_only=True)
 
     class Meta:
