@@ -10,12 +10,13 @@ class Tour(models.Model):
         ('moderation', 'в модерации'),
         ('approved', 'одобрен'),
         ('notapproved', 'не одобрен'),
+        ('sended', 'отправлено'),
     )
     guide = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='guided_tours')
     client = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='client_tours')
     guest_count = models.IntegerField(blank=False)
-    begin_datetime = models.DateTimeField(unique=True)
-    end_datetime = models.DateTimeField(unique=True)
+    begin_datetime = models.DateTimeField(unique=True, null=True)
+    end_datetime = models.DateTimeField(unique=True, null=True)
     status = models.CharField(max_length=11, choices=STATUSES, default='moderation')
     comment = models.CharField(max_length=2500, blank=True, null=True)
     residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=True)
