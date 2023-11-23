@@ -16,14 +16,23 @@ class Tour(models.Model):
         ('sended', 'отправлено'),
     )
 
-    guide = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='guided_tours')
-    client = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='client_tours')
+    FORMATS = (
+        ('overwiew', 'Обзорная экскурсия'),
+        ('education', 'Образовательная экскурсия'),
+        ('exhibition', 'Экспозиционные мероприятия'),
+        ('buisiness', 'Бизнес-тур для инвесторов'),
+        ('profile', 'Профильные'),
+    )
+
+    guide = models.ForeignKey(User, null=True, blank=False, on_delete=models.SET_NULL, related_name='guided_tours')
+    client = models.ForeignKey(User, null=True, blank=False, on_delete=models.SET_NULL, related_name='client_tours')
     guest_count = models.IntegerField(blank=False)
     begin_datetime = models.DateTimeField(unique=True, null=True)
     end_datetime = models.DateTimeField(unique=True, null=True)
     status = models.CharField(max_length=11, choices=STATUSES, default='moderation')
+    format = models.CharField(max_length=11, choices=FORMATS)
     comment = models.CharField(max_length=2500, blank=True, null=True)
-    residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=True)
+    residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=False)
 
     # properties
     @property
