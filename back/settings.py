@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'user',
     'resident',
     'tour',
+    'cabinet',
 ]
 
 MIDDLEWARE = [
