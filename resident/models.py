@@ -34,6 +34,17 @@ class Resident(models.Model):
         new_photo.resident = self
         new_photo.photo = image
         new_photo.save()
+    
+    def add_extra(self, user, file):
+        if not user.is_superuser and user != self.responsible:
+            return bad_request
+        if not file:
+            return bad_request
+        
+        new_file = ExtraFile()
+        new_file.resident = self
+        new_file.file = file
+        new_file.save()
 
     def __str__(self) -> str:
         return f'{self.pk} | {self.name} | {self.direction}'

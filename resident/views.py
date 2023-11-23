@@ -6,7 +6,7 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
 from .models import Resident
-from .serializers import ResidentSerializer, ResidentPhotoSerializer
+from .serializers import ExtraFilesSerializer, ResidentSerializer, ResidentPhotoSerializer
 
 class ResidentViewSet(viewsets.ModelViewSet):
     queryset = Resident.objects.all()
@@ -41,3 +41,9 @@ class ResidentViewSet(viewsets.ModelViewSet):
         resident: Resident = self.get_object()
         resident.add_photo(request.user, request.data['photo'])
         return Response('successfully added a new photo')
+    
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated], serializer_class=ExtraFilesSerializer)
+    def add_extra(self, request, pk=None):
+        resident: Resident = self.get_object()
+        resident.add_extra(request.user, request.data['file'])
+        return Response('succesfuly added extra file')
