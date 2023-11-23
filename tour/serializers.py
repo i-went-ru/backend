@@ -1,8 +1,12 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 
 from .models import Tour
 from user.serializers import UserSerializerFull
 from resident.serializers import ResidentSerializer
+
+User = get_user_model()
 
 class TourSerializer(serializers.ModelSerializer):
     guide_info = UserSerializerFull(source='guide', read_only=True)
@@ -11,7 +15,8 @@ class TourSerializer(serializers.ModelSerializer):
 
     begin_datetime = serializers.DateTimeField(required=True)
     end_datetime = serializers.DateTimeField(required=True)
-    status = serializers.CharField(required=True)
+    status = serializers.CharField(default='moderation')
+    client = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=True)
 
     def get_residents_info(self, instance):
         queryset = instance.residents.all().order_by('floor')

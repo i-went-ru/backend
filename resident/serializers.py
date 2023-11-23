@@ -37,7 +37,7 @@ class ResidentSerializer(TaggitSerializer, serializers.ModelSerializer):
     free_days = BusyDaySerializer(many=True, read_only=False, required=False)
     busy_days = FreeDaySerializer(many=True, read_only=False, required=False)
     extra_files = ExtraFilesSerializer(many=True, read_only=True)
-    responsible_info = ResponsibleSerializer(source='responsible')
+    responsible_info = ResponsibleSerializer(source='responsible', required=False)
 
     class Meta:
         model = Resident
