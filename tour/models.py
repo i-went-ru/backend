@@ -29,7 +29,7 @@ class Tour(models.Model):
     guest_count = models.IntegerField(blank=False)
     begin_datetime = models.DateTimeField(unique=True, null=True)
     end_datetime = models.DateTimeField(unique=True, null=True)
-    status = models.CharField(max_length=11, choices=STATUSES, default='moderation')
+    status = models.CharField(max_length=11, choices=STATUSES, default='sended')
     format = models.CharField(max_length=11, choices=FORMATS)
     comment = models.CharField(max_length=2500, blank=True, null=True)
     residents = models.ManyToManyField(Resident, related_name='resident_tours', blank=False)
